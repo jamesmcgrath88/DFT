@@ -1,6 +1,3 @@
-// DFT.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -31,13 +28,10 @@ std::vector<std::string> splitCSVFileLine(std::string& line)
 
 int main()
 {
-    std::cout << "DFT!\n";
-
     std::ifstream inputCSVFile("C:\\SoftwareDevelopment\\Tools\\DFT\\DFT\\Data\\SineWave_1Hz.csv");
 
     std::vector<float> timeStamps;
     std::vector<float> signalAmplitude;
-
     std::string line;
     while (std::getline(inputCSVFile, line))
     {
@@ -60,20 +54,19 @@ int main()
             ValueCosine += signalAmplitude[n] * cos((2.0f * PI * (float)k * (float)n) / (float)N);
         }
 
-        float PowerK = ValueSine * ValueSine + ValueCosine *ValueCosine;
+        float PowerK = ValueSine * ValueSine + ValueCosine * ValueCosine;
         PowerSpectrum.push_back(PowerK);
     }
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-
-    // To get the value of duration use the count()
-    // member function on the duration object
     std::cout << duration.count() << std::endl;
 
-    /*for (int i = 0; i < N; i++)
+    std::ofstream outputfile("SineWave_1Hz.txt");
+    int vsize = PowerSpectrum.size();
+    for (int n = 0; n < vsize; n++)
     {
-        std::cout << PowerSpectrum[i] << std::endl;
-    }*/
+        outputfile << PowerSpectrum[n] << std::endl;
+    }
 
     fftw_complex * out;
     fftw_plan p;
@@ -91,24 +84,9 @@ int main()
     fftw_execute(p); /* repeat as needed */
     auto stop_fftw = std::chrono::high_resolution_clock::now();
     fftw_destroy_plan(p);
-    
-    /*for (int i = 0; i < N; i++)
-    {
-        std::cout << "[" << i << "]" << " " << *out[i] << std::endl;
-    }*/
 
     auto duration_fftw = std::chrono::duration_cast<std::chrono::microseconds>(stop_fftw - start_fftw);
     std::cout << duration_fftw.count() << std::endl;
     fftw_free(out);
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

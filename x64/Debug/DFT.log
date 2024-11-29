@@ -1,3 +1,4 @@
 ﻿  DFT.cpp
-C:\SoftwareDevelopment\Tools\DFT\DFT\DFT.cpp(50,35): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\SoftwareDevelopment\Tools\DFT\DFT\DFT.cpp(44,35): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\SoftwareDevelopment\Tools\DFT\DFT\DFT.cpp(65,37): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   DFT.vcxproj -> C:\SoftwareDevelopment\Tools\DFT\DFT\x64\Debug\DFT.exe
