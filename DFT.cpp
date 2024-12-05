@@ -61,7 +61,7 @@ int main()
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
     std::cout << duration.count() << std::endl;
 
-    std::ofstream outputfile("SineWave_1Hz.txt");
+    std::ofstream outputfile("..\\Results\\SineWave_1Hz.txt");
     int vsize = PowerSpectrum.size();
     for (int n = 0; n < vsize; n++)
     {

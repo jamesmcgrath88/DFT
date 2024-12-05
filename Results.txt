@@ -1,7 +1,0 @@
-1 Hz (512 samples):
-Nieve: 12793
-FFTW: 1103
-
-PPG (256 samples):
-Nieve: 4541
-FFTW: 864
